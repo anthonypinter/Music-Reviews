@@ -9,7 +9,7 @@ import json
 # don't mess with these variables
 delay = 1 # time to wait on each page load before reading the page
 driver = webdriver.Safari() # options are Chrome(), Safari(), Firefox()
-url = []
+urls = []
 album_selector = 'div.review'
 url_selector = '.review a.album-link'
 
