@@ -12,4 +12,4 @@ A python script that scrapes album reviews and associated metadata from Pitchfor
 4. Profit
 
 ## To-dos
-[ ] Change the outputs so if there is nothing for a specific field (say, a missing abstract), it outputs a blank space to perserve the integrity of the CSV formatting.
+[] Change the outputs so if there is nothing for a specific field (say, a missing abstract), it outputs a blank space to perserve the integrity of the CSV formatting.
