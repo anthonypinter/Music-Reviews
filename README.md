@@ -10,3 +10,6 @@ A python script that scrapes album reviews and associated metadata from Pitchfor
 2. Run the album.py script (if you are generating all 19,000 reviews, expect this script to take a minute)
 3. ????
 4. Profit
+
+## To-dos
+[ ] Change the outputs so if there is nothing for a specific field (say, a missing abstract), it outputs a blank space to perserve the integrity of the CSV formatting.
