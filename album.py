@@ -15,17 +15,21 @@ import urllib
 # don't mess with these variables
 delay = 5 # time to wait on each page load before reading the page
 driver = webdriver.Safari() # options are Chrome(), Safari(), Firefox()
-album_selector = 'h1.review-title'
+
+album_selector = 'h1.single-album-tombstone__review-title'
 artist_selector = 'ul.artist-links li'
 score_selector = 'span.score'
 record_label_selector = 'ul.label-list li'
-year_selector = 'span.year'
+
+# error being thrown here
+year_selector = 'span.single-album-tombstone__meta-year'
+
 review_author_selector = 'ul.authors-detail a'
 genre_selector = 'ul.genre-list a'
 date_published_selector = 'time.pub-date'
-abstract_selector = 'div.abstract'
+abstract_selector = 'div.review-detail__abstract'
 accolades_selector = 'p.bnm-txt'
-album_art_selector = 'div.album-art img'
+album_art_selector = 'div.single-album-tombstone__art img'
 artist_url_selector = 'ul.artist-links li a'
 
 with open('scrape-output.json', 'r') as f:
@@ -95,7 +99,7 @@ with open('scrape-output.json', 'r') as f:
 
                 # record label block
 
-                record_label = driver.find_elements_by_css_selector(record_label_selector)
+                record_label = driver.find_elements_by_css_selector(record_label_selector) # these aren't appearing?
                 print('{} record labels found.'.format(len(record_label)))
                 for label in record_label:
                     record_label_list.append(label.text)
@@ -162,7 +166,7 @@ with open('scrape-output.json', 'r') as f:
                 review_author = driver.find_element_by_css_selector(review_author_selector).text
                 review_author_url = driver.find_element_by_css_selector(review_author_selector).get_attribute('href')
 
-                abstract = driver.find_element_by_css_selector(abstract_selector).text # error being thrown here
+                abstract = driver.find_element_by_css_selector(abstract_selector).text
 
                 score = driver.find_element_by_css_selector(score_selector).text
 
@@ -183,17 +187,20 @@ with open('scrape-output.json', 'r') as f:
                 # collects the album art image
 
                 img = driver.find_element_by_css_selector(album_art_selector).get_attribute('src')
-                album_name = corrected_album + '_' + corrected_artist1 + '.png'
-                urllib.urlretrieve(img, album_name)
+                album_name = './album-art/' + corrected_album + '_' + corrected_artist1 + '.png'
+                urllib.request.urlretrieve(img, album_name)
 
                 # writes to external file
 
                 output = (date_published + '|' + review_author + '|' + review_author_url + '|' + album + '|' + review_url + '|' + artist1 + '|' + artist_url1 + '|' + artist2 + '|' + artist_url2 + '|' + artist3 + '|' + artist_url3 + '|' + genre1 + '|' + genre_url1 + '|' + genre2 + '|' + genre_url2 + '|' + year + '|' + record_label1 + '|' + record_label2 + '|' + record_label3 + '|' + score + '|' + accolades + '|' + abstract + '|' + album_name)
                 line_break = '\n'
-                g.write(output.encode('utf-8'))
+                g.write(output)
                 g.write("\n")
 
-                print(album + artist1)
+                review_url_html = './raw-html/' + corrected_album + '_' + corrected_artist1 + '.html'
+                urllib.request.urlretrieve(review_url, review_url_html)
+
+                print(album + ' ' + artist1)
 
                 sleep(delay)
 
@@ -204,4 +211,3 @@ with open('scrape-output.json', 'r') as f:
                 continue
 
         driver.close()
-        driver.quit()

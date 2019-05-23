@@ -14,7 +14,7 @@ album_selector = 'div.review'
 url_selector = '.review a.review__link'
 
 # mess with these variables
-page_counter = 1 # change this as appropriate -- in 06/2017 there were roughly 1580 album review pages
+page_counter = 1780 # change this as appropriate -- on 05/23/2019 there were roughly 1779 album review pages
 destination_file = 'scrape-output.json'
 
 def test_url(page_number):
