@@ -14,7 +14,7 @@ album_selector = 'div.review'
 url_selector = '.review a.review__link'
 
 # mess with these variables
-page_counter = 1780 # change this as appropriate -- on 05/23/2019 there were roughly 1779 album review pages
+page_counter = 1
 destination_file = 'scrape-output.json'
 
 def test_url(page_number):
@@ -22,7 +22,7 @@ def test_url(page_number):
     page = str(page_number)
     return base_url + page
 
-while page_counter <= 1:
+while page_counter <= 1780: # change this as appropriate -- on 05/23/2019 there were roughly 1779 album review pages
     url = test_url(page_counter)
     print(url)
     driver.get(url)
