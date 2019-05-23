@@ -44,4 +44,3 @@ while page_counter <= 1:
             f.write(url + '\n')
 
 driver.close()
-driver.quit()
