@@ -11,10 +11,10 @@ delay = 1 # time to wait on each page load before reading the page
 driver = webdriver.Safari() # options are Chrome(), Safari(), Firefox()
 urls = []
 album_selector = 'div.review'
-url_selector = '.review a.album-link'
+url_selector = '.review a.review__link'
 
-# mess with this variable
-page_counter = 1 # change this as appropriate -- in 06/2017 there were roughly 1580 album revie pages
+# mess with these variables
+page_counter = 1 # change this as appropriate -- in 06/2017 there were roughly 1580 album review pages
 destination_file = 'scrape-output.json'
 
 def test_url(page_number):

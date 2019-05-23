@@ -45,7 +45,7 @@ with open('scrape-output.json', 'r') as f:
 
             url = line
             review_url = url.strip('\n')
-            driver.get(url)
+            driver.get(review_url)
             sleep(delay)
 
             try:
@@ -161,7 +161,9 @@ with open('scrape-output.json', 'r') as f:
 
                 review_author = driver.find_element_by_css_selector(review_author_selector).text
                 review_author_url = driver.find_element_by_css_selector(review_author_selector).get_attribute('href')
-                abstract = driver.find_element_by_css_selector(abstract_selector).text
+
+                abstract = driver.find_element_by_css_selector(abstract_selector).text # error being thrown here
+
                 score = driver.find_element_by_css_selector(score_selector).text
 
                 # album block to catch instances of / in album titles
@@ -191,7 +193,7 @@ with open('scrape-output.json', 'r') as f:
                 g.write(output.encode('utf-8'))
                 g.write("\n")
 
-                print album + artist1
+                print(album + artist1)
 
                 sleep(delay)
 
