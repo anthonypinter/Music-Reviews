@@ -11,6 +11,7 @@ from time import sleep
 import json
 import csv
 import urllib
+import urllib.request as ur
 
 # don't mess with these variables
 delay = 5 # time to wait on each page load before reading the page
@@ -32,7 +33,7 @@ accolades_selector = 'p.bnm-txt'
 album_art_selector = 'div.single-album-tombstone__art img'
 artist_url_selector = 'ul.artist-links li a'
 
-with open('scrape-output.json', 'r') as f:
+with open('scrape-output-1.json', 'r') as f:
     with open('scrape-results.txt', 'a') as g:
         for line in f:
             artist_list = []
